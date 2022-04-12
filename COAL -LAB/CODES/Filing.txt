@@ -1,0 +1,43 @@
+INCLUDE irvine32.inc
+
+.data
+filehandle DWORD ?
+filename BYTE "C:\wfile.txt",0
+
+bufferSize = 10 ;if we want to write just 10 bytes
+buffer BYTE "what" ;uninitialized in this example but buffer will contain the text to be written to file
+bf BYTE "lalala"
+
+
+.code
+main PROC
+mov edx,OFFSET filename
+call CreateOutputFile
+mov filehandle, eax
+
+
+
+
+mov eax, filehandle
+mov edx, OFFSET buffer 
+mov ecx, bufferSize 
+call WriteToFile
+
+
+
+mov edx,OFFSET filename
+call OpenInputFile
+mov filehandle, EAX
+
+
+mov eax, filehandle
+mov edx, OFFSET bf 
+mov ecx, bufferSize 
+call ReadFromFile
+
+mov eax, filehandle 
+call CloseFile
+
+exit
+main ENDP
+END main

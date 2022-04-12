@@ -1,0 +1,35 @@
+include irvine32.inc
+
+.data
+name1 byte "The Rabbit jumped Over the Rock",0
+msg1 byte "Enter an string: ",0
+
+.code
+main proc
+
+mov edx,offset msg1
+call writestring
+call readchar
+
+mov ecx,lengthof name1
+mov edi,offset name1
+
+loop1:
+
+scasb
+jne next
+mov byte ptr [edi-1],'*'
+
+next:
+loop loop1
+
+call crlf
+call crlf
+mov edx,offset name1
+call writestring
+call crlf
+call crlf
+
+exit
+main endp
+end main

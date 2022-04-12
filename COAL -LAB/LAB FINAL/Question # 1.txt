@@ -1,0 +1,35 @@
+Include irvine32.inc
+.data
+number DWORD ?
+N byte "Enter Number",0
+A Byte"Factorial:",0 
+.code
+main PROC
+mov eax, 0
+mov edx, offset N
+call writestring
+call readdec
+mov number, eax
+mov ecx, number
+
+CALL FACTCAL
+mov edx, offset A
+call writestring
+call writeDEC
+exit
+main ENDP
+
+FACTCAL PROC
+push ebp
+mov esp, ebp
+
+cmp ecx, 0
+je Result
+mul ecx
+dec ecx
+call FACTCAL
+Result: 
+pop ebp
+ret
+FACTCAL ENDP
+END main

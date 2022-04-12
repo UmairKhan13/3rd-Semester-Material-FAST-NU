@@ -1,0 +1,12 @@
+5 10
+passionest
+aklubarest
+restlarest
+pledomrest
+zerybdrest
+5
+passion
+rest
+determination
+work
+study

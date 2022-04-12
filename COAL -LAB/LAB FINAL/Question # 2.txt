@@ -1,0 +1,31 @@
+Include irvine32.inc
+.data
+Arr Word "10,15,12,11,13,14,9,7,8,6,4,5,3,2,1"
+
+.code
+Bubble PROC
+mov cx, 15
+mov esi, offset Arr
+mov edi, offset Arr+1
+L1: 
+mov ax, [esi]
+mov bx, [edi]
+cmp ax, bx
+jl L2
+add esi, 2
+add edi, 2
+loop L1
+
+jmp exit
+
+L2:
+xchg ax, bx
+mov [esi], ax
+mov [edi], bx
+jmp L1
+
+exit
+
+Bubble ENDP
+
+END Bubble

@@ -1,0 +1,30 @@
+Include irvine32.inc
+.data 
+string1 byte"Enter the Local input value: ",0
+Input dword ?
+result byte "The Square is: "
+.code
+main PROC
+Call LocalSquare
+mov edx, offset result
+call writestring
+call writedec
+
+exit
+
+main ENDP
+
+LocalSquare PROC
+
+Enter 1,2
+mov edx, offset string1
+call writestring
+call readdec
+mov Input, eax
+Push Input
+mov ebx, [EBP+1]
+mul ebx
+pop Input
+Leave
+LocalSquare ENDP
+END main
